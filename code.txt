@@ -1,0 +1,233 @@
+import java.util.*;
+public class PrajwalMS {
+    public static String arithmeticArranger(String str[],boolean a){
+        int operand1[] = new int[5];
+        int operand2[] = new int[5];
+        int result[] = new int[5];
+        String line1="";
+        String line2="";
+        String line3="";
+        String line4="";
+        int prob_length[] =new int[5];
+        String err;
+        char operator[] = new char[5];
+        if(str.length>5){
+            err="Error: Too many problems.";
+            return err;
+        }
+        else{
+            for(int i=0;i<str.length;i++){
+                String prob[] = str[i].split(" ");
+                operator[i] = prob[1].charAt(0);
+                if(operator[i] !='+' && operator[i] !='-'){
+                    // System.out.println(operator[i]);
+                    err="Error: Operator must be '+' or '-'.";
+                    return err;
+                }
+                try{
+                    operand1[i] = Integer.parseInt(prob[0]);
+                    operand2[i] = Integer.parseInt(prob[2]);
+                }
+                catch(Exception e){
+                    err="Error: Numbers must contain only digits";
+                    return err;
+                }
+                if(prob[0].length()>4 || prob[2].length()>4){
+                    err="Error: Numbers cannot be more than four digits";
+                    return err;
+                }
+                
+                if (operand1[i]>=operand2[i]){
+                    int str_len= prob[0].length()+2;
+                    String line1_term=" ".repeat(2)+ prob[0]+" ".repeat(4);
+                    line1+=line1_term;
+                    String line2_term=prob[1]+" ".repeat(str_len-prob[2].length()-1)+prob[2]+" ".repeat(4);
+                    line2+=line2_term;
+                    String line3_term="_".repeat(str_len)+" ".repeat(4);
+                    line3+=line3_term;
+                    prob_length[i]=str_len;
+                }else{
+                    int str_len= prob[2].length()+2;
+                    String line1_term=" ".repeat(str_len-prob[0].length())+ prob[0]+" ".repeat(4);
+                    line1+=line1_term;
+                    String line2_term=prob[1]+" "+prob[2]+" ".repeat(4);
+                    line2+=line2_term;
+                    String line3_term="_".repeat(str_len)+" ".repeat(4);
+                    line3+=line3_term;
+                    prob_length[i]=str_len;
+                }
+            }
+            if(a){
+                for(int i=0;i<str.length;i++){
+                    switch(operator[i]){
+                        case '+': result[i]=operand1[i]+operand2[i];
+                                  break;
+                        case '-': result[i]=operand1[i]-operand2[i];
+                                  break;
+                    }
+                    String res = Integer.toString(result[i]);
+                    int str_len=res.length();
+                    // System.out.println(res);
+                    // System.out.println(str_len+" "+(prob_length[i]));
+                    String line4_term = " ".repeat(prob_length[i]-str_len)+res+" ".repeat(4);
+                    line4 +=line4_term;
+                }
+                String succ = line1+"\n"+line2+"\n"+line3+"\n"+line4;
+                return succ;
+
+            }else{
+                String succ = line1+"\n"+line2+"\n"+line3;
+                return succ;
+            }
+        }
+    }
+    public static void main(String[] args){
+        String s[] = {"32 + 698","3819 - 2","45 + 43","123 + 49"};
+        String str = arithmeticArranger(s, false);
+        System.out.println(str);
+        System.out.println();
+        String s1[] = {"32 + 8","1 - 3801","9999 + 9999","523 - 49"};
+        String str1 = arithmeticArranger(s1, true);
+        System.out.println(str1);
+    }
+    
+}
+
+
+Approach_1:
+public class ar_arrange
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+        int no,i=0;boolean solve;
+        System.out.println("Enter number of expressions-");
+        no = sc.nextInt();
+        String[] exp = new String[no+1];
+        System.out.println("Enter Expression-");
+        for(i=0;i<=no;i=i+1)
+        {
+            exp[i] = sc.nextLine();
+        }
+        System.out.println("Enter True- To Solve Else");
+        System.out.println(" False- To Not Solve");
+        solve = sc.nextBoolean();
+        for(i =1;i<=no;i++)
+        {
+            //System.out.println(exp[i]);
+            arithmeticArranger(exp[i], solve);
+            System.out.println();
+        }
+        //System.out.println(exp.length);
+    }
+    public static void arithmeticArranger(String exp, boolean solve)
+    {
+        int i;int x,y;float result;
+        //System.out.println(exp);
+        String[] a = exp.split(" ");
+        //System.out.println(a.length);
+        System.out.println(" "+a[0]);
+        System.out.print(a[1]+" ");
+        System.out.println(a[2]);
+        if(solve)
+        {
+            x = Integer.parseInt(a[0]);
+            y = Integer.parseInt(a[2]);
+            switch(a[1])
+            {
+                case "+":
+                    result = x+y;
+                    break;
+                case "-":
+                    result = x-y;
+                    break;
+                case "*":
+                    result = x*y;
+                    break;
+                case "/":
+                    result = x/y;
+                    break;
+                case "%":
+                    result = x%y;
+                    break;
+                default:
+                    System.out.println("Wrong Input");
+                    return;
+            }
+            System.out.println("--------");
+            System.out.println(result);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+Approach_2:
+import java.util.Scanner;
+public class apporach2{
+public static void main(String[] args) {
+		for(int i = 1; i < 5 ; i++) {
+			int x , y ;
+		Scanner a = new Scanner(System.in);
+		System.out.println("Enter number1");
+		x = a.nextInt();
+		System.out.println("Enter number2");
+		y = a.nextInt();
+		 
+		int sum = x+y , dif = x-y ;
+		System.out.println(+ x + "\t+"  + y + "\n-----\n=" + (x+y));
+		System.out.println('\t');
+		System.out.println(+ x + "\t-"  + y + "\n-----\n=" + (x-y));
+		}
+}
+}
+
+
+
+
+
+
+Approach_3:
+import java.util.Scanner;
+public class approach3{
+public static void main(String[] args) {
+	String[]exp=new String[] {"123 + 31","13 + 31", "23 + 13","423 - 234"};
+	 aritmeticArranger(exp);
+	 System.out.println(10+"10");
+}
+public static void eval(String[] str) {
+	int num1=0;
+	int num2=0;
+	char op;
+	int index=0;
+	for(int i=0;i<str.length;i++) {
+		if(str[i]>= '0' && str[i]<= '9')
+			continue;
+		
+		if(str[i]== '+' || str[i]== '-') {
+			continue;
+		}
+	}
+}
+public static void aritmeticArranger(String[] str) {
+	for(int i=0; i<1; i++) {
+		String exp=str[i];
+		eval(exp);
+		for(int k=0;k<exp.size(); i++) {
+			if(exp.charAt(k)=='+' || exp.charAt(k)=='-') {
+				continue;
+				int a=Integer.parseInt(str[i]);
+				System.out.println(result);
+				System.out.println(str[i]);
+				
+			}
+		}
+	}
+}
+}
+
