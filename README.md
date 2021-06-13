@@ -1,7 +1,7 @@
 ![Screenshot (354)](https://user-images.githubusercontent.com/74085170/121798896-879e2f00-cc46-11eb-90f0-994d57a2778b.png)
 ![2](https://user-images.githubusercontent.com/74085170/121798908-971d7800-cc46-11eb-8bd0-4a89da9e85d1.jpg)
 # Java_Projects
-Java projects done during the internship at IC Solution in associated with Take it engineering during April-May 2021 
+Java projects done during the internship at IC Solution in associated with Take it engineering during May-june 2021 
 
 During this internship i have done two project on Arithematic Formatter using Java and File Conversion using Java.
 1.Arithematic Formatter involves Create a function arithmeticArranger() that receives a list of strings that are arithmetic problems and 
